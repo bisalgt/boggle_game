@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table,
+      th,
+      td {
+        border: 3px solid black;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 15px;
+
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Boggle Game</h2>
+    <p>Table to identify the boggle game</p>
+
+    <table style="max-width: 100%">
+      {% for r in range(4) %}
+      <tr>
+        {% for c in range(4)%}
+        <td>{{arr[r][c]}}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+    <br /><br /><br />
+    <form method="POST">
+      <label for="guess_id"> Guess Number : </label>
+      <input type="text" id="guess_id" name="guess" />
+      <input type="submit" value="Submit Guess" />
+    </form>
+  </body>
+</html>
