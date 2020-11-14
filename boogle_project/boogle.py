@@ -3,23 +3,32 @@ import time
 
 app = Flask(__name__)
 
-@app.route('/', methods=('GET', 'POST'))
-def check_for_valid_words():
-    if request.method == 'POST':
-        print(request.form['guess'])
-        print(check_string_valid_or_not(request.form['guess']))
-        return redirect('/')
-    return render_template('home.html', arr=arr)
+# @app.route('/', methods=('GET', 'POST'))
+# def check_for_valid_words():
+#     if request.method == 'POST':
+#         print(request.form['guess'])
+#         print(check_string_valid_or_not(request.form['guess']))
+#         return redirect('/')
+#     return render_template('home.html', arr=arr)
 
-@app.route('/js', methods=('GET', 'POST'))
-def using_js():
-    if request.method=="POST":
-        print('this function is called ')
-        # print(dir(request))
+# @app.route('/js', methods=('GET', 'POST'))
+# def using_js():
+#     if request.method=="POST":
+#         print('this function is called ')
+#         # print(dir(request))
+#         print(request.form)
+#         return render_template('index.html')
+#     return render_template('index.html')
+
+@app.route('/', methods=("GET", "POST"))
+def final_boogle_checker():
+    print('funciton called')
+    if request.method == "POST":
         print(request.form)
-        return jsonify({"name": "bishal gautammmmmmm"})
-    return render_template('index.html')
-
+        result = check_string_valid_or_not(request.form['guess'])
+        print(result)
+        return jsonify({"result": result})
+    return render_template('final.html', arr=arr)
 
 arr = [['a', 'b', 'c', 'd'],
        ['e', 'f', 'e', 'h'],

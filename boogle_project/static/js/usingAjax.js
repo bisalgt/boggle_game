@@ -22,11 +22,38 @@ $("document").ready(function () {
       },
     });
   });
-  var total_time = 30;
-  var difference = 30;
+
+  function ajax_call_flask() {
+    $.ajax({
+      url: "/js",
+      type: "POST",
+      data: { name: "bishal" },
+      success: function (response) {
+        console.log("successful");
+        numbers.push(1);
+        console.log(numbers);
+        var para = document.createElement("p");
+        var paraText = document.createTextNode("Response" + numbers);
+        para.appendChild(paraText);
+        var element = document.getElementById("div1");
+        console.log(element, " this is the element div");
+        element.innerHTML = "";
+        element.appendChild(para);
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  }
+
+  var total_time = 5;
+  var difference = 5;
   function countDownTimer() {
     console.log("Difference time", difference);
-
+    if (difference == 0) {
+      difference = 5;
+      ajax_call_flask();
+    }
     difference -= 1;
     console.log("Difference-----time", difference);
     var para = document.getElementById("timerId");

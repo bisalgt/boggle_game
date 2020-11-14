@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="static/js/boogle.js"></script>
+    <style>
+      table,
+      th,
+      td {
+        border: 3px solid black;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 15px;
+
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Boogle Game</h1>
+    <br /><br />
+    <!-----    Table of the game     -->
+    <p>Table to identify the boggle game</p>
+    <table style="max-width: 100%">
+      {% for r in range(4) %}
+      <tr>
+        {% for c in range(4)%}
+        <td>{{arr[r][c]}}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+    <br /><br /><br />
+
+    <!---- Timer of the game    --->
+    <div id="countdown">
+      <p id="timerId"></p>
+    </div>
+
+    <!---- Input field of the game  --->
+    <label for="inputId"> Enter Guess : </label>
+    <input id="inputId" type="text" name="guessField" value="Enter Here:"/>
+    <input id="btnId" type="button" value="Submit" />
+
+    <!------ Result DIV of the game--->
+    <div id="resultDiv">
+      <h2>This is the result of yours!!!</h2>
+      <p id="totalGuessesId"></p>
+      <p id="validGuessesId"></p>
+      <p id="totalCorrectsId"></p>
+    </div>
+  </body>
+</html>
