@@ -1,22 +1,24 @@
-from flask import Flask, render_template, redirect, request, session
+from flask import Flask, render_template, redirect, request, session, jsonify
+import time
 
 app = Flask(__name__)
 
 @app.route('/', methods=('GET', 'POST'))
 def check_for_valid_words():
-    arr = [['a', 'b', 'c', 'd'],
-       ['e', 'f', 'e', 'h'],
-       ['i', 'y', 'k', 'l'],
-       ['m', 'n', 'o', 'p']]
-    csrf_token = 'hey jude dont'
-    print(session)
     if request.method == 'POST':
         print(request.form['guess'])
         print(check_string_valid_or_not(request.form['guess']))
         return redirect('/')
-    return render_template('home.html', arr=arr, csrf_token=csrf_token)
+    return render_template('home.html', arr=arr)
 
-
+@app.route('/js', methods=('GET', 'POST'))
+def using_js():
+    if request.method=="POST":
+        print('this function is called ')
+        # print(dir(request))
+        print(request.form)
+        return jsonify({"name": "bishal gautammmmmmm"})
+    return render_template('index.html')
 
 
 arr = [['a', 'b', 'c', 'd'],
@@ -58,7 +60,7 @@ def check_string_valid_or_not(check_string):
         print('else1')
         length -= 1
         for position in starting_positions:
-            reserved_position = [] # e is matched
+            reserved_position = [] 
             reserved_position.append(position)
             print(check_string[0], ' is matched')
             next_possible_steps = find_possible_steps(position[0], position[1], reserved_position, check_string)
@@ -82,7 +84,7 @@ def check_string_valid_or_not(check_string):
                             print(check_string[2], ' not matched')
                             return False
                         continue
-                    else: # y is matched from above loop
+                    else: 
                         print('else3')
                         print()
                         length -= 1
@@ -101,7 +103,7 @@ def check_string_valid_or_not(check_string):
                             if len(next_possible_steps_3) == 0:
                                 reserved_position.pop()
                                 continue
-                            else: # e is matched of eye
+                            else: 
                                 length -= 1
                                 print(check_string[3] , ' is matched')
                                 if length == 0:
