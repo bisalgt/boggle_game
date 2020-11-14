@@ -26,7 +26,6 @@ def final_boogle_checker():
     if request.method == "POST":
         print(request.form)
         result = check_string_valid_or_not(request.form['guess'])
-        print(result)
         return jsonify({"result": result})
     return render_template('final.html', arr=arr)
 

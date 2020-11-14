@@ -36,23 +36,28 @@
       {% endfor %}
     </table>
     <br /><br /><br />
-
     <!---- Timer of the game    --->
     <div id="countdown">
-      <p id="timerId"></p>
+      <input id="countBtnId" type="button" value="start" />
+      <input id="stopBtnId" type="button" value="pause" />
+      <input id="resetBtnId" type="button" value="reset" />
+
+      <p id="timerId">30</p>
     </div>
 
-    <!---- Input field of the game  --->
-    <label for="inputId"> Enter Guess : </label>
-    <input id="inputId" type="text" name="guessField" value="Enter Here:"/>
-    <input id="btnId" type="button" value="Submit" />
+    <div id="mainGame" hidden>
+      <!---- Input field of the game  --->
+      <label for="inputId"> Enter Guess : </label>
+      <input id="inputId" type="text" name="guessField" />
+      <input id="btnId" type="button" value="Submit" />
 
-    <!------ Result DIV of the game--->
-    <div id="resultDiv">
-      <h2>This is the result of yours!!!</h2>
-      <p id="totalGuessesId"></p>
-      <p id="validGuessesId"></p>
-      <p id="totalCorrectsId"></p>
+      <!------ Result DIV of the game--->
+      <div id="resultDiv">
+        <h2>This is the result of yours!!!</h2>
+        <p id="totalGuessesId"></p>
+        <p id="validGuessesId"></p>
+        <p id="totalCorrectsId"></p>
+      </div>
     </div>
   </body>
 </html>
