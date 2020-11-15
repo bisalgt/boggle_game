@@ -1,6 +1,8 @@
 from flask import Flask, render_template, redirect, request, session, jsonify
 import time
 import random
+import enchant
+d = enchant.Dict("en_US")
 
 app = Flask(__name__)
 
@@ -47,7 +49,11 @@ def final_boogle_checker():
     if request.method == "POST":
         print(request.form)
         print('here inside final game boggle post')
-        result = check_string_valid_or_not(request.form['guess'])
+        if d.check(request.form["guess"]):
+            result = check_string_valid_or_not(request.form['guess'])
+            print('inside d', result)
+        else:
+            result = False
         return jsonify({"result": result})
     randomizer()
     return render_template('final.html', arr=arr)

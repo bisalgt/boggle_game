@@ -80,7 +80,20 @@ $("document").ready(function () {
     var para3 = document.getElementById("timerId");
     para3.innerHTML = difference;
     console.log("print here");
-    ajax_call_flask_reset();
+    $.ajax({
+      url: "/",
+      type: "GET",
+      success: function (response) {
+        console.log("successful response by reset");
+        // var tableRef = document.getElementsByTagName("table");
+        // console.log(tableRef);
+
+        // table update while clicking reset button work remain
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
   });
 
   $("#stopBtnId").click(function () {
