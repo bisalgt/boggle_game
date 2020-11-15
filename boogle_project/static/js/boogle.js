@@ -33,7 +33,7 @@ $("document").ready(function () {
 
   function ajax_call_flask_reset() {
     $.ajax({
-      url: "/",
+      url: "/intermediate",
       type: "GET",
       success: function (response) {
         console.log("successful response");
@@ -75,6 +75,8 @@ $("document").ready(function () {
     var para2 = document.getElementById("validGuessesId");
     para2.innerHTML = "Correct Answers : ";
     document.getElementById("mainGame").style.display = "none";
+    document.getElementById("stopBtnId").style.display = "none";
+    document.getElementById("resetBtnId").style.display = "none";
     var para3 = document.getElementById("timerId");
     para3.innerHTML = difference;
     console.log("print here");
@@ -106,7 +108,9 @@ $("document").ready(function () {
     console.log("button clicked of countdown  ");
     console.log("inside if block");
     //   document.getElementById("countBtnId").setAttribute("value", "stop");
-    document.getElementById("mainGame").style.display = "block";
+    document.getElementById("mainGame").style.display = "inline";
+    document.getElementById("stopBtnId").style.display = "inline";
+    document.getElementById("resetBtnId").style.display = "inline";
     console.log("button clicked of countdown started");
     // counterFunc("nth");
     myC = setInterval(countDownTimer, 1000);

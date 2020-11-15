@@ -1,7 +1,15 @@
 from flask import Flask, render_template, redirect, request, session, jsonify
 import time
+import random
 
 app = Flask(__name__)
+
+arr = [['a', 'b', 'c', 'd'],
+       ['e', 'f', 'e', 'h'],
+       ['i', 'y', 'k', 'l'],
+       ['m', 'n', 'o', 'p']]
+
+alphabets = 'abcdefghijklmnopqrstuvwxyz'
 
 # @app.route('/', methods=('GET', 'POST'))
 # def check_for_valid_words():
@@ -20,19 +28,30 @@ app = Flask(__name__)
 #         return render_template('index.html')
 #     return render_template('index.html')
 
+
+
+@app.route('/intermediate')
+def intermediate_function():
+    return render_template("intermediate.html")
+
+def randomizer():
+    global arr
+    for r in range(4):
+            for c in range(4):
+                arr[r][c] = alphabets[random.randint(0,25)]
+
+
 @app.route('/', methods=("GET", "POST"))
 def final_boogle_checker():
-    print('funciton called')
+    global arr
     if request.method == "POST":
         print(request.form)
+        print('here inside final game boggle post')
         result = check_string_valid_or_not(request.form['guess'])
         return jsonify({"result": result})
+    randomizer()
     return render_template('final.html', arr=arr)
 
-arr = [['a', 'b', 'c', 'd'],
-       ['e', 'f', 'e', 'h'],
-       ['i', 'y', 'k', 'l'],
-       ['m', 'n', 'o', 'p']]
 
 def find_possible_steps(r,c, reserved_position, check_string):
     print(r, c, reserved_position)
@@ -52,6 +71,7 @@ def find_possible_steps(r,c, reserved_position, check_string):
 
 
 def check_string_valid_or_not(check_string):
+    print(arr)
     starting_positions = []
     length = len(check_string)
     if length <3:
